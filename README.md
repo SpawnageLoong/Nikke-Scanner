@@ -1,55 +1,53 @@
-# Honkai: Star Rail - Data Scanner
+# Nikke: Goddess of Victory - Data Scanner
 
-Easily export light cones, relics, and character data from Honkai: Star Rail to JSON format using OCR.
+***This program is not yet ready. Please do not use it yet. This is a fork of [HSR-Scanner](https://github.com/kel-z/HSR-Scanner).***
+
+Easily export character and harmony cube data from Nikke: Goddess of Victory to JSON format using OCR.
 
 The resulting output can be used in various community-made optimization tools including:
 
-- [Fribbels HSR Optimizer](https://fribbels.github.io/hsr-optimizer/)
-- [Relic Harmonizer](https://relicharmonizer.com/)
+- I don't think any tools exist yet.
+- Will create one eventually
 
 ## Installation
 
-[Download latest HSR Scanner](https://github.com/kel-z/HSR-Scanner/releases/latest) and then run as administrator (required to simulate keyboard and mouse presses).
+[Download the latest release](https://github.com/SpawnageLoong/Nikke-Scanner/releases/latest) and then run as administrator (required to simulate keyboard and mouse presses).
 
 <!-- If you haven't already, download and install [Microsoft Visual C++ Redistributable for Visual Studio 2015-2022](https://docs.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170#visual-studio-2015-2017-2019-and-2022) (x86 or x64 depending on system). -->
 
 ## Instructions
 
 1. Set text language to English.
-2. Set in-game resolution to one that has an aspect ratio of 16:9 (e.g. 1920x1080, 1280x720).
-3. **In Star Rail, look away from any bright colours.** _Yes, really._ The inventory screen is translucent and bright colours can bleed through to make the text harder to accurately detect and recognize. Looking towards the ground usually works in most cases, as long as the right side of the screen is relatively dark. (Double-check by opening the inventory page and see if the item info on the right contrasts well with the background.) You can skip this step if you're only scanning characters.
-   ![Dark background example](./example.png)
-4. Open the cellphone menu (ESC menu).
-5. Configure the necessary [scanner settings](#scanner-settings-and-configurations) in HSR Scanner.
-6. Start the scan.
-7. Do not move your mouse during the scan process.
-8. Once the scan is complete, some additional time may be required to process the data before generating the final JSON file output.
+2. Set in-game aspect ratio to 16:9.
+3. Open the main menu (home screen).
+4. Configure the necessary [scanner settings](#scanner-settings-and-configurations) in Nikke Scanner.
+5. Start the scan.
+6. Do not move your mouse during the scan process.
+7. Once the scan is complete, some additional time may be required to process the data before generating the final JSON file output.
 
-As of `v0.3.0`, the app's database is [updated separately](https://github.com/kel-z/HSR-Data) from this repo. If the database version doesn't match the latest game version, then the database hasn't been updated yet.
+As of `v0.1.0`, the app's database is [updated separately](https://github.com/kel-z/HSR-Data) from this repo. If the database version doesn't match the latest game version, then the database hasn't been updated yet.
 
 ## Scanner settings and configurations
 
-HSR Scanner has the following scan options:
+Nikke Scanner has the following scan options:
 
-- Select whether to scan light cones, relics, and/or characters.
+- Select whether to scan character data or union raid data (TODO).
 - Include UID in the JSON file (disabled by default).
 - Set output location for the JSON file.
-- Filter light cones, relics, and characters based on a minimum rarity or level threshhold.
+- Filter characters based on a minimum rarity or level threshhold.
 
-If Star Rail lags on your system, the scanner might perform its inputs too fast for the game to respond or re-render in time. To work around this, there are two types of delays that can be increased in the configure tab:
+If Nikke lags on your system, the scanner might perform its inputs too fast for the game to respond or re-render in time. To work around this, there are two types of delays that can be increased in the configure tab:
 
 - Navigation delay for navigating between different pages (inventory, character details, etc.)
-- Scan delay for clicking between individual items (relics, light cones, and characters).
-
-The scanner uses `b` and `c` by default to navigate to the inventory and character screen, respectively. If you changed these hotkeys, you will need to update the corresponding key in the configure tab.
+- Scan delay for clicking between individual characters.
 
 If debug mode is enabled, the scanner will save ALL the screenshots taken during a scan to a debug folder in the specified output directory.
 
 ## Output
 
-The output is loosely based off of Genshin's `.GOOD` export format. I don't expect this output to change anytime soon. If a breaking change has to made to the output, the version will be incremented by one to differentiate the change from previous versions.
+The output is loosely based off of HSR-Scanner's output, which itself is based off of Genshin's `.GOOD` export format. I don't expect this output to change anytime soon. If a breaking change has to made to the output, the version will be incremented by one to differentiate the change from previous versions.
 
-### Notes
+### Notes (TODO: Update after the code works)
 
 - SPD substats have a hidden decimal place that the scanner cannot directly parse. As a result, reproducing your character's stats (such as on optimizer websites) will most likely have a lower SPD stat than what it displays in-game. This is not an issue with the scanner, but rather a limitation when obtaining substats through OCR.
 - If the Trailblazer variant was not determinable during the scan or previous scans, it will default to `Stelle`.
@@ -63,7 +61,7 @@ The output is loosely based off of Genshin's `.GOOD` export format. I don't expe
     - If _X_ and _Y_ both connect to the same `stat_#` (only found in Erudition), then visually assign from bottom to top.
 - The exact string values used can be found [here](src/models/game_data.py).
 
-Current output sample:
+Current output sample (TODO: Update later):
 
 ```JSON
 {
